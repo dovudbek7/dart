@@ -3,9 +3,11 @@ void main() {
   // var pizza = ManuItem("volcano pizza", 12.99);
 
   var pizza = Pizza(["mashrooms", "peppers"], "veg volcano pizza", 15.99);
-  
-  print(noodles.format());
-  print(pizza.format());
+
+  print(
+    noodles,
+  ); // by default if you call only the class name it will return to string method output: (Instance of 'ManuItem') and you can override it costumize to yourself
+  print(pizza);
 }
 
 class ManuItem {
@@ -17,6 +19,11 @@ class ManuItem {
   String format() {
     return "$title --> $price";
   }
+
+  @override
+  String toString() {
+    return format();
+  }
 }
 
 class Pizza extends ManuItem {
@@ -24,4 +31,15 @@ class Pizza extends ManuItem {
 
   // Pizza(this.toppings, String title, double price): super(title,price);
   Pizza(this.toppings, super.title, super.price); // shorthand
+
+  @override
+  String format() {
+    var formattedToppings = 'Contains: ';
+
+    for (final t in toppings) {
+      formattedToppings = '$formattedToppings $t';
+    }
+
+    return '$title --> $price \n$formattedToppings';
+  }
 }
