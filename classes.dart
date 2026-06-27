@@ -3,11 +3,16 @@ void main() {
   // var pizza = ManuItem("volcano pizza", 12.99);
 
   var pizza = Pizza(["mashrooms", "peppers"], "veg volcano pizza", 15.99);
+  var roast = ManuItem('veg roast dinner', 12.99);
+  var kebab = ManuItem('plant kebab', 7.99);
+  // print(
+  //   noodles,
+  // ); // by default if you call only the class name it will return to string method output: (Instance of 'ManuItem') and you can override it costumize to yourself
 
-  print(
-    noodles,
-  ); // by default if you call only the class name it will return to string method output: (Instance of 'ManuItem') and you can override it costumize to yourself
-  print(pizza);
+  var foods = Collections('Menu Items', [pizza, roast, kebab]);
+  var random = foods.randomItem();
+  print(random);
+  // print(pizza);
 }
 
 class ManuItem {
@@ -41,5 +46,18 @@ class Pizza extends ManuItem {
     }
 
     return '$title --> $price \n$formattedToppings';
+  }
+}
+
+class Collections<T> {
+  String name;
+  List<T> data;
+
+  Collections(this.name, this.data);
+
+  T randomItem() {
+    data.shuffle();
+
+    return data[0];
   }
 }
